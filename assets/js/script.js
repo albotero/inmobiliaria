@@ -31,7 +31,7 @@ const updateDOM = (htmlTag, p) => {
     </div>`
 }
 
-const listProperties = ({ propType, n, htmlTag }) => {
+const listProperties = ({ propType, n = Number.MAX_VALUE, htmlTag }) => {
   // Get required properties array
   const properties = propType === "venta" ? propiedades_venta : propiedades_alquiler
   // Sort properties by newest, alternatively could sort them by price or location, etc
