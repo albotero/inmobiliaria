@@ -42,4 +42,4 @@ const listProperties = ({ propType, n, htmlTag }) => {
 }
 
 // List properties from data object declared on .html file
-data.forEach((el) => listProperties(el))
+data.forEach(listProperties)
