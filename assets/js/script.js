@@ -31,12 +31,26 @@ const updateDOM = (htmlTag, p) => {
     </div>`
 }
 
-const listProperties = ({ propType, n = Number.MAX_VALUE, htmlTag }) => {
+const listProperties = ({ propType, n = Number.MAX_VALUE, htmlTag, sortBy }) => {
   // Get required properties array
   const properties = propType === "venta" ? propiedades_venta : propiedades_alquiler
-  // Sort properties by newest, alternatively could sort them by price or location, etc
-  // Get first n properties
-  properties.sort((a, b) => Date.parse(b.dateAdded) - Date.parse(a.dateAdded)).splice(n)
+  // Sort properties
+  properties
+    .sort((a, b) => {
+      switch (sortBy) {
+        case "dateAdded":
+          // More recent first
+          return Date.parse(b.dateAdded) - Date.parse(a.dateAdded)
+        case "costo":
+          // Lowest price first
+          return a.costo - b.costo
+        default:
+          // Randomly sort
+          return Math.random() - 0.5
+      }
+    })
+    // Get first n properties
+    .splice(n)
   // Update DOM object
   properties.forEach((el) => updateDOM(htmlTag, el))
 }
