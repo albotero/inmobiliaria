@@ -15,8 +15,6 @@
     />
   </head>
   <body>
-    <!-- Properties script -->
-    <script src="./assets/js/script.js" type="module"></script>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container">
         <a class="navbar-brand" href="./">Inmobiliaria ADL</a>
@@ -49,21 +47,27 @@
     <main class="container-fluid main-section">
       <h1 class="text-white">Encuentra tu nueva propiedad</h1>
     </main>
-    <div class="container mt-5">
-      <!-- Propiedades en venta -->
-      <section id="sell" class="mb-5">
-        <h2 class="title-properties"></h2>
-        <div class="row properties"></div>
-        <a href="./propiedades.html?type=sell" class="btn btn-dark">Ver todas las propiedades en venta</a>
-      </section>
-      <hr />
-      <!-- Propiedades en alquiler -->
-      <section id="rent" class="mb-5">
-        <h2 class="title-properties"></h2>
-        <div class="row properties"></div>
-        <a href="./propiedades.html?type=rent" class="btn btn-dark">Ver todas las propiedades en alquiler</a>
-      </section>
-    </div>
+    <div class="container mt-5 properties-container"></div>
+    <!-- Properties script -->
+    <script>
+      const data = [
+        { propType: "sell", n: 3, text: "venta" },
+        { propType: "rent", n: 3, text: "alquiler" },
+      ]
+      document.querySelector(".properties-container").innerHTML = data
+        .map(
+          ({ propType, text }) => `
+            <section id="${propType}" class="mb-5">
+              <h2 class="title-properties"></h2>
+              <div class="row properties"></div>
+              <a href="./propiedades.html?type=${propType}" class="btn btn-dark">
+                Ver todas las propiedades en ${text}
+              </a>
+            </section>`
+        )
+        .join("")
+    </script>
+    <script src="./assets/js/script.js" type="module"></script>
     <!-- Font awesome -->
     <script src="https://kit.fontawesome.com/f5bdbb41e0.js" crossorigin="anonymous"></script>
     <!-- Bootstrap JS -->
@@ -72,12 +76,5 @@
       integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
       crossorigin="anonymous"
     ></script>
-    <!-- Load properties -->
-    <script>
-      const data = [
-        { propType: "sell", n: 3 },
-        { propType: "rent", n: 3 },
-      ]
-    </script>
   </body>
 </html>

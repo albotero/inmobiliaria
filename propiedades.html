@@ -55,7 +55,17 @@
       </section>
     </div>
     <!-- Properties scripts -->
-    <script src="./assets/js/loadProperties.js"></script>
+    <script>
+      const urlParams = new URLSearchParams(window.location.search)
+      const pageType = urlParams.get("type")
+      const data = [
+        {
+          propType: pageType,
+          sortBy: pageType === "rent" ? "costo" : "dateAdded",
+        },
+      ]
+      document.querySelector(`.link-${pageType}`).classList.add("active")
+    </script>
     <script src="./assets/js/script.js" type="module"></script>
     <!-- Font awesome -->
     <script src="https://kit.fontawesome.com/f5bdbb41e0.js" crossorigin="anonymous"></script>
