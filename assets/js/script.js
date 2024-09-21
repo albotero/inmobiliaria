@@ -23,8 +23,12 @@ const updateDOM = (p) => {
           <p><i class="fas fa-map-marker-alt"></i> ${p.ubicacion}</p>
           <p>
             <i class="fas fa-bed"></i> ${p.habitaciones} Habitaciones |
-            <i class="fas fa-bath"></i> ${p.banos} Baños</p>
-          <p><i class="fas fa-dollar-sign"></i> ${p.costo.toLocaleString()}</p>
+            <i class="fas fa-bath"></i> ${p.banos} Baños
+          </p>
+          <p><i class="fas fa-dollar-sign"></i>
+            ${p.costo.toLocaleString()}
+            ${p.propType === "rent" ? `<span class="sub">/ mes</span>` : ""}
+          </p>
           ${smoke}
           ${pets}
         </div>
@@ -58,7 +62,7 @@ const listProperties = ({ propType, n = Number.MAX_VALUE, sortBy }) => {
   // Update DOM
   const div = document.querySelector(typeof pageType === "undefined" ? `#${propType}` : "body")
   div.querySelector(".title-properties").innerText = `Propiedades en ${propType === "rent" ? "alquiler" : "venta"}`
-  properties.forEach((el) => updateDOM({ ...el, div }))
+  properties.forEach((el) => updateDOM({ ...el, propType, div }))
 }
 
 // List properties from data object declared on .html file
