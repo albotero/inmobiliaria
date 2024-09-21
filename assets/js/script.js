@@ -22,8 +22,8 @@ const updateDOM = (p) => {
           <p class="card-text">${p.descripcion}</p>
           <p><i class="fas fa-map-marker-alt"></i> ${p.ubicacion}</p>
           <p>
-            <i class="fas fa-bed"></i> ${p.habitaciones} Habitaciones |
-            <i class="fas fa-bath"></i> ${p.banos} Baños
+            <i class="fas fa-bed"></i> ${p.habitaciones} Habitaci${p.habitaciones === 1 ? "ón" : "ones"} |
+            <i class="fas fa-bath"></i> ${p.banos} Baño${p.banos === 1 ? "" : "s"}
           </p>
           <p><i class="fas fa-dollar-sign"></i>
             ${p.costo.toLocaleString()}
