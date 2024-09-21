@@ -19,7 +19,7 @@
     <script src="./assets/js/script.js" type="module"></script>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container">
-        <a class="navbar-brand" href="#">Inmobiliaria ADL</a>
+        <a class="navbar-brand" href="./">Inmobiliaria ADL</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -34,13 +34,13 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <!-- <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                <a class="nav-link active" aria-current="page" href="./">Home</a>
               </li> -->
             <li class="nav-item">
-              <a class="nav-link" href="./propiedades_venta.html">En venta</a>
+              <a class="nav-link link-sell" href="./propiedades.html?type=sell">En venta</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./propiedades_alquiler.html">Alquiler</a>
+              <a class="nav-link link-rent" href="./propiedades.html?type=rent">Alquiler</a>
             </li>
           </ul>
         </div>
@@ -51,17 +51,17 @@
     </main>
     <div class="container mt-5">
       <!-- Propiedades en venta -->
-      <section id="venta">
-        <h2>Propiedades en venta</h2>
+      <section id="sell" class="mb-5">
+        <h2 class="title-properties"></h2>
         <div class="row properties"></div>
-        <a href="./propiedades_venta.html" class="btn btn-dark">Ver todas las propiedades en venta</a>
+        <a href="./propiedades.html?type=sell" class="btn btn-dark">Ver todas las propiedades en venta</a>
       </section>
       <hr />
       <!-- Propiedades en alquiler -->
-      <section id="alquiler" class="mb-5">
-        <h2>Propiedades en alquiler</h2>
+      <section id="rent" class="mb-5">
+        <h2 class="title-properties"></h2>
         <div class="row properties"></div>
-        <a href="./propiedades_alquiler.html" class="btn btn-dark">Ver todas las propiedades en alquiler</a>
+        <a href="./propiedades.html?type=rent" class="btn btn-dark">Ver todas las propiedades en alquiler</a>
       </section>
     </div>
     <!-- Font awesome -->
@@ -75,8 +75,8 @@
     <!-- Load properties -->
     <script>
       const data = [
-        { propType: "venta", n: 3, htmlTag: "#venta .properties" },
-        { propType: "alquiler", n: 3, htmlTag: "#alquiler .properties" },
+        { propType: "sell", n: 3 },
+        { propType: "rent", n: 3 },
       ]
     </script>
   </body>

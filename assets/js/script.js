@@ -1,14 +1,15 @@
 import { propiedades_alquiler, propiedades_venta } from "./properties.js"
 
-const updateDOM = (htmlTag, p) => {
-  const div = document.querySelector(htmlTag)
+const updateDOM = (p) => {
   const smoke = p.smoke
     ? `<p class="text-success"><i class="fas fa-smoking"></i> Permitido fumar</p>`
     : `<p class="text-danger"><i class="fas fa-smoking-ban"></i> No se permite fumar</p>`
+
   const pets = p.pets
     ? '<p class="text-success"><i class="fas fa-paw"></i> Mascotas permitidas</p>'
     : '<p class="text-danger"><i class="fas fa-ban"></i> No se permiten mascotas</p>'
-  div.innerHTML += `
+
+  p.div.querySelector(`.properties`).innerHTML += `
     <div class="col-md-4 mb-4">
       <div class="card">
         <img
@@ -31,11 +32,13 @@ const updateDOM = (htmlTag, p) => {
     </div>`
 }
 
-const listProperties = ({ propType, n = Number.MAX_VALUE, htmlTag, sortBy }) => {
+const listProperties = ({ propType, n = Number.MAX_VALUE, sortBy }) => {
   // Get required properties array
-  const properties = propType === "venta" ? propiedades_venta : propiedades_alquiler
-  // Sort properties
+  const properties = propType === "sell" ? propiedades_venta : propiedades_alquiler
+
+  // Process data
   properties
+    // Sort properties
     .sort((a, b) => {
       switch (sortBy) {
         case "dateAdded":
@@ -51,8 +54,11 @@ const listProperties = ({ propType, n = Number.MAX_VALUE, htmlTag, sortBy }) => 
     })
     // Get first n properties
     .splice(n)
-  // Update DOM object
-  properties.forEach((el) => updateDOM(htmlTag, el))
+
+  // Update DOM
+  const div = document.querySelector(typeof pageType === "undefined" ? `#${propType}` : "body")
+  div.querySelector(".title-properties").innerText = `Propiedades en ${propType === "rent" ? "alquiler" : "venta"}`
+  properties.forEach((el) => updateDOM({ ...el, div }))
 }
 
 // List properties from data object declared on .html file
